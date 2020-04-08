@@ -1,11 +1,12 @@
-package Lession_1;
+package DAY_1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Task_4 {
+public class Task_5 {
 
+public static int SHIFT_VALUE = 2;
     public static void main(String[] args) throws IOException {
 
         int[] arr = new int[SetArraySize()];
@@ -14,20 +15,19 @@ public class Task_4 {
         }
         System.out.print("First Array:");
         PrintArray(arr);
-
-        SwiftArrayElements(arr);
-        System.out.print("Second Array:");
-        PrintArray(arr);
+        System.out.print("Second Array (after shifting):");
+        PrintArray(SwiftArrayElements(arr));
     }
 
-    public static void SwiftArrayElements(int[] arr) {
+    public static int[] SwiftArrayElements(int[] arr) {
+        int[] swiftArr = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
-            if (i % 2 != 0) {
-                int temp = arr[i];
-                arr[i] = arr[i - 1];
-                arr[i - 1] = temp;
+            if(i+SHIFT_VALUE>arr.length-1){
+                swiftArr[i] = arr[i+SHIFT_VALUE-arr.length];
             }
+            else {swiftArr[i] = arr[i+SHIFT_VALUE];}
         }
+        return swiftArr;
     }
 
     public static int SetArraySize() throws IOException {

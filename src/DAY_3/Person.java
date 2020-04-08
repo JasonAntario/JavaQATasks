@@ -1,4 +1,4 @@
-package Lession_2;
+package DAY_3;
 
 public class Person extends Human {
     private String name;

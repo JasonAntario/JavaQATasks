@@ -1,4 +1,4 @@
-package Lession_2;
+package DAY_3;
 
 public class Runner {
     public static void main(String[] args) {
