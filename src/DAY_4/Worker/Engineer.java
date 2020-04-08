@@ -4,7 +4,7 @@ import DAY_4.Entity.Result;
 import DAY_4.Entity.Test;
 
 public abstract class Engineer {
-    private static int MAX_SKILL = 9;
+    private static int MAX_SKILL = 10;
     private int anxiety=3;
 
     public int getAnxiety() {
