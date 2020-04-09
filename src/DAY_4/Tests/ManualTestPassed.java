@@ -14,6 +14,6 @@ public class ManualTestPassed {
     public void manualTestPassed() {
         ManualTest manualTest = new ManualTest(TestLevel.UNIT, 4);
         TestEngineer testEngineer = new TestEngineer();
-        Assert.assertEquals("ManualTest, AutomationEngineer, UNIT(1), instability 4, anxiety 3: ", Result.PASSED, manualTest.apply(testEngineer));
+        Assert.assertEquals("ManualTest, TestEngineer, UNIT(1), instability 4, anxiety 3: ", Result.PASSED, manualTest.apply(testEngineer));
     }
 }

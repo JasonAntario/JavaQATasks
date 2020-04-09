@@ -14,6 +14,6 @@ public class AutomatedTestPassed {
     public void automatedTestPassed() {
         AutomatedTest automatedTest = new AutomatedTest(TestLevel.API, 3);
         TestEngineer testEngineer = new TestEngineer();
-        Assert.assertEquals("AutomationTest, AutomationEngineer, API(3), instability 3, anxiety 3: ", Result.PASSED, automatedTest.apply(testEngineer));
+        Assert.assertEquals("AutomationTest, TestEngineer, API(3), instability 3, anxiety 3: ", Result.PASSED, automatedTest.apply(testEngineer));
     }
 }
