@@ -5,41 +5,88 @@ import DAY_4.Entity.ManualTest;
 import DAY_4.Entity.Result;
 import DAY_4.Entity.TestLevel;
 import DAY_4.Worker.AutomationEngineer;
+import DAY_4.Worker.Engineer;
 import DAY_4.Worker.TestEngineer;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class Day4Tests {
+    private static DAY_4.Entity.Test test;
+    private static Engineer engineer;
 
-    //false true
+    /*Testing class Test (apply method)
+    if1(true || false)->true, if2->true */
     @Test
-    public void automatedTestFailed() {
-        AutomatedTest automatedTest = new AutomatedTest(TestLevel.GUI, 4);
-        AutomationEngineer automationEngineer = new AutomationEngineer();
-        Assert.assertEquals("AutomationTest, AutomationEngineer, Gui(9), instability 4, anxiety 1: ", Result.FAILED, automatedTest.apply(automationEngineer));
+    public void mTestAEngineerFailed() {
+        test = new ManualTest(TestLevel.GUI, 10);
+        engineer = new AutomationEngineer();
+        engineer.setSkill(8);
+        Assert.assertEquals(test.getClass().toString() + " " + engineer.getClass().toString(), Result.FAILED, test.apply(engineer));
     }
 
-    // OR true false
+    // if1(true || false)->true, if2->false
     @Test
-    public void automatedTestPassed() {
-        AutomatedTest automatedTest = new AutomatedTest(TestLevel.API, 3);
-        TestEngineer testEngineer = new TestEngineer();
-        Assert.assertEquals("AutomationTest, TestEngineer, API(3), instability 3, anxiety 3: ", Result.PASSED, automatedTest.apply(testEngineer));
+    public void mTestAEngineerPassed() {
+        test = new ManualTest(TestLevel.API, 4);
+        engineer = new AutomationEngineer();
+        engineer.setSkill(5);
+        Assert.assertEquals(test.getClass().toString() + " " + engineer.getClass().toString(), Result.PASSED, test.apply(engineer));
     }
 
-    //true true
+    //if1(false || true)->true, if2->true
     @Test
-    public void manualTestFailed() {
-        ManualTest manualTest = new ManualTest(TestLevel.GUI, 2);
-        AutomationEngineer automationEngineer = new AutomationEngineer();
-        Assert.assertEquals("ManualTest, AutomationEngineer, GUI(9), instability 2, anxiety 3: ", Result.FAILED, manualTest.apply(automationEngineer));
+    public void aTestTEngineerFailed() {
+        test = new AutomatedTest(TestLevel.GUI, 10);
+        engineer = new TestEngineer();
+        engineer.setSkill(7);
+        Assert.assertEquals(test.getClass().toString() + " " + engineer.getClass().toString(), Result.FAILED, test.apply(engineer));
     }
 
-    //false false
+    //if1(false || true)->true, if2->false
     @Test
-    public void manualTestPassed() {
-        ManualTest manualTest = new ManualTest(TestLevel.UNIT, 4);
-        TestEngineer testEngineer = new TestEngineer();
-        Assert.assertEquals("ManualTest, TestEngineer, UNIT(1), instability 4, anxiety 3: ", Result.PASSED, manualTest.apply(testEngineer));
+    public void aTestTEngineerPassed() {
+        test = new AutomatedTest(TestLevel.UNIT, 5);
+        engineer = new TestEngineer();
+        engineer.setSkill(1);
+        Assert.assertEquals(test.getClass().toString() + " " + engineer.getClass().toString(), Result.PASSED, test.apply(engineer));
+    }
+
+    //if1(false || false)->false, if2->true
+    @Test
+    public void aTestAEngineerFailed() {
+        test = new AutomatedTest(TestLevel.GUI, 5);
+        engineer = new AutomationEngineer();
+        engineer.setSkill(1);
+        Assert.assertEquals(test.getClass().toString() + " " + engineer.getClass().toString(), Result.FAILED, test.apply(engineer));
+    }
+
+    //if1(false || false)->false, if2->false
+    @Test
+    public void mTestTEngineerPassed() {
+        test = new ManualTest(TestLevel.API, 1);
+        engineer = new TestEngineer();
+        engineer.setSkill(1);
+        Assert.assertEquals(test.getClass().toString() + " " + engineer.getClass().toString(), Result.PASSED, test.apply(engineer));
+    }
+
+    /*Testing class Test (setInstability method)
+    if1(true) */
+    @Test
+    public void InstabilityT(){
+        test = new ManualTest(TestLevel.GUI, 0);
+        Assert.assertEquals(1, test.getInstability());
+    }
+    //if1(false) else if2(true)
+    @Test
+    public void InstabilityFT(){
+        test = new ManualTest(TestLevel.GUI, 15);
+        Assert.assertEquals(10, test.getInstability());
+    }
+
+    //if1(false) else if2(false)
+    @Test
+    public void InstabilityFF(){
+        test = new ManualTest(TestLevel.GUI, 8);
+        Assert.assertEquals(8, test.getInstability());
     }
 }
