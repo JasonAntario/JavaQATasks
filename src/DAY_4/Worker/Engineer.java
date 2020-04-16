@@ -17,7 +17,11 @@ public abstract class Engineer {
         return skill;
     }
 
-    public void setSkill() {
+    public void setSkill(int skill) {
+        this.skill = skill;
+    }
+
+    public void setRandomSkill() {
         this.skill = (int) (1 + Math.random() * MAX_SKILL);
     }
 
