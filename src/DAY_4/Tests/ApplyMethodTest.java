@@ -1,47 +1,59 @@
 package DAY_4.Tests;
 
-
+import DAY_4.Entity.AutomatedTest;
 import DAY_4.Entity.ManualTest;
 import DAY_4.Entity.Result;
 import DAY_4.Entity.TestLevel;
+import DAY_4.Worker.AutomationEngineer;
 import DAY_4.Worker.Engineer;
 import DAY_4.Worker.TestEngineer;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
 import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class BaseTest {
+public class ApplyMethodTest {
 
     private DAY_4.Entity.Test test;
     private Engineer engineer;
     private int skill;
     private Result expected;
 
-    public BaseTest(Engineer engineer, int skill, DAY_4.Entity.Test test, Result expected) {
+    public ApplyMethodTest(Engineer engineer, int skill, DAY_4.Entity.Test test, Result expected) {
         this.engineer = engineer;
-        this.skill=skill;
-        this.test=test;
-        this.expected=expected;
+        this.skill = skill;
+        this.test = test;
+        this.expected = expected;
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> primeNumbers() {
         return Arrays.asList(new Object[][]{
-                {new TestEngineer(),1,new ManualTest(TestLevel.UNIT, 5), Result.PASSED},
-                {new TestEngineer(),10,new ManualTest(TestLevel.UNIT, 5), Result.PASSED},
-                {new TestEngineer(),1,new ManualTest(TestLevel.API, 9), Result.PASSED},
-                {new TestEngineer(),10,new ManualTest(TestLevel.API, 9), Result.PASSED},
+                {new TestEngineer(), 1, new AutomatedTest(TestLevel.UNIT, 1), Result.PASSED},
+                {new AutomationEngineer(), 10, new AutomatedTest(TestLevel.GUI, 0), Result.PASSED},
+                {new TestEngineer(), 1, new ManualTest(TestLevel.API, 0), Result.PASSED},
+                {new AutomationEngineer(), 10, new ManualTest(TestLevel.UNIT, 0), Result.PASSED},
+                {new TestEngineer(), 10, new ManualTest(TestLevel.UNIT, 10), Result.PASSED},
+                {new TestEngineer(), 10, new AutomatedTest(TestLevel.API, 11), Result.PASSED},
+                {new TestEngineer(), 1, new AutomatedTest(TestLevel.GUI, 10), Result.FAILED},
+                {new TestEngineer(), 1, new ManualTest(TestLevel.GUI, 11), Result.FAILED},
+                {new TestEngineer(), 1, new AutomatedTest(TestLevel.API, 0), Result.PASSED},
+                {new AutomationEngineer(), 1, new AutomatedTest(TestLevel.UNIT, 11), Result.PASSED},
+                {new AutomationEngineer(), 10, new AutomatedTest(TestLevel.API, 1), Result.PASSED},
+                {new AutomationEngineer(), 1, new ManualTest(TestLevel.API, 10), Result.FAILED},
+                {new AutomationEngineer(), 10, new ManualTest(TestLevel.GUI, 11), Result.PASSED},
+                {new AutomationEngineer(), 1, new ManualTest(TestLevel.GUI, 1), Result.PASSED},
+                {new TestEngineer(), 10, new ManualTest(TestLevel.API, 1), Result.PASSED},
+                {new AutomationEngineer(), 10, new AutomatedTest(TestLevel.API, 10), Result.PASSED},
         });
     }
 
-    /*Testing class Test (apply method)
-    if1(true || false)->true, if2->true */
     @Test
-    public void ApplyMethodTest() {
+    public void MethodTesting() {
         engineer.setSkill(skill);
         Assert.assertEquals(expected, test.apply(engineer));
     }
