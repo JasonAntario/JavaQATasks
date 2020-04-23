@@ -6,6 +6,4 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ApplyMethodTest.class, InstabilityTestLevelTest.class})
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestsRunner {
-
-}
+public class TestsRunner {}

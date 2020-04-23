@@ -2,16 +2,15 @@ import entity.AutomatedTest;
 import entity.ManualTest;
 import entity.Result;
 import entity.TestLevel;
-import worker.AutomationEngineer;
-import worker.Engineer;
-import worker.TestEngineer;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.junit.runners.Parameterized;
-
+import worker.AutomationEngineer;
+import worker.Engineer;
+import worker.TestEngineer;
 import java.util.Arrays;
 import java.util.Collection;
 
