@@ -58,7 +58,7 @@ public class DbConnect {
         return dataSource;
     }
 
-   /* private static void execStatement(String query) throws SQLException {
+   private static void execStatement(String query) throws SQLException {
         try {
             Connection connection = getDataSource(properties).getConnection();
             Statement statement = connection.createStatement();
@@ -69,7 +69,7 @@ public class DbConnect {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }*/
+    }
 
     private static void execPreparedStatement(String query, int id) throws SQLException {
         try {
