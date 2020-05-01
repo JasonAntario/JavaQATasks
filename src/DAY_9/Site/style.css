@@ -1,0 +1,39 @@
+
+
+H1 {
+	font-size: 500%;
+	font-family: "Century Gothic", sans-serif;
+	text-align: center;
+}
+
+input{
+	cursor: pointer;
+	width: 500px;
+	height: 150px;
+	background-position: center;
+	background-size: 500px 150px;
+	font-weight: bold;
+	font-size: 200%;
+}
+.one{
+	background: url(bg1.jpg);
+}
+.two{
+	background: url(bg2.jpg);
+}
+.three{
+	background: url(bg3.jpg);
+}
+form{
+	text-align: center;
+}
+
+input:hover{
+	background: url(bg4.jpg);
+}
+p{
+	font-size: 12pt;
+	font-family: "Comic Sans MS", sans-serif;
+	text-color: gray;
+	text-align:center;
+}
