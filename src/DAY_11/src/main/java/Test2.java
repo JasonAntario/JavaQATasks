@@ -39,13 +39,13 @@ public class Test2 {
 
         Actions actions = new Actions(driver);
         element = driver.findElement(By.xpath("//*[@id=\"xp__guests__toggle\"]"));
-        actions.moveToElement(element).click();
+        actions.moveToElement(element).click().perform();
 
         element = driver.findElement(By.xpath("//*[contains(@class,\"field-adult\")]//input"));
         String adultCount = element.getAttribute("value");
         element = driver.findElement(By.xpath("//*[contains(@aria-describedby, \"adult\")][contains(@class, \"add\")]"));
         for (int i = 0; i < (4 - Integer.parseInt(adultCount)); i++) {
-            actions.moveToElement(element).click();
+            actions.moveToElement(element).click().perform();
         }
 
         element = driver.findElement(By.xpath("//*[contains(@class,\"field-rooms\")]//input"));
@@ -53,7 +53,7 @@ public class Test2 {
         System.out.println(roomCount);
         element = driver.findElement(By.xpath("//*[contains(@aria-describedby, \"no_rooms_desc\")][contains(@class, \"add\")]"));
         for (int i = 0; i < (2 - Integer.parseInt(roomCount)); i++) {
-            actions.moveToElement(element).click();
+            actions.moveToElement(element).click().perform();
         }
         element = driver.findElement(By.xpath("//*[contains(@type, \"submit\")]"));
         element.click();
@@ -75,5 +75,6 @@ public class Test2 {
         System.out.println(maxPrice);
         System.out.println(Integer.parseInt(maxPrice) >= firstOneDayPrice);
         //   System.out.println("Price = " + maxPrice + "+; Lower Price = " + firstOneDayPrice);
+        driver.quit();
     }
 }
