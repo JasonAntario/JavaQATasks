@@ -1,7 +1,9 @@
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -65,8 +67,9 @@ public class Test1 {
 
         element = driver.findElement(By.xpath("//*[contains(@class, \"bui-price-display\")]/div[2]/div"));
         String firstPrice = element.getText();
+        driver.close();
         firstPrice = firstPrice.replaceAll("\\D+", "");
         int firstOneDayPrice = Integer.parseInt(firstPrice) / daysCount;
-        System.out.println("Price = " + maxPrice + "+; Lower Price = " + firstOneDayPrice);
+        Assert.assertTrue(firstOneDayPrice >= Integer.parseInt(maxPrice));
     }
 }

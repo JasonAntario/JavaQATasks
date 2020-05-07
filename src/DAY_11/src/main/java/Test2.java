@@ -1,3 +1,6 @@
+
+import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -50,7 +53,6 @@ public class Test2 {
 
         element = driver.findElement(By.xpath("//*[contains(@class,\"field-rooms\")]//input"));
         String roomCount = element.getAttribute("value");
-        System.out.println(roomCount);
         element = driver.findElement(By.xpath("//*[contains(@aria-describedby, \"no_rooms_desc\")][contains(@class, \"add\")]"));
         for (int i = 0; i < (2 - Integer.parseInt(roomCount)); i++) {
             actions.moveToElement(element).click().perform();
@@ -69,12 +71,10 @@ public class Test2 {
 
         element = driver.findElement(By.xpath("//*[contains(@class, \"bui-price-display\")]/div[2]/div"));
         String firstPrice = element.getText();
+        driver.quit();
         firstPrice = firstPrice.replaceAll("\\D+", "");
         int firstOneDayPrice = Integer.parseInt(firstPrice) / daysCount;
-        System.out.println(firstOneDayPrice);
-        System.out.println(maxPrice);
-        System.out.println(Integer.parseInt(maxPrice) >= firstOneDayPrice);
-        //   System.out.println("Price = " + maxPrice + "+; Lower Price = " + firstOneDayPrice);
-        driver.quit();
+        Assert.assertTrue(firstOneDayPrice <= Integer.parseInt(maxPrice));
+
     }
 }
