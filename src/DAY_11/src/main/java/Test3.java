@@ -6,12 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
-import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 
 public class Test3 {
     public static void main(String[] args) throws InterruptedException {
@@ -19,6 +17,7 @@ public class Test3 {
         int daysCount = 1;
         int daysShiftCount = 1;
         System.setProperty("webdriver.chrome.driver", "extra/chromedriver.exe");
+        System.setProperty("webdriver.chrome.silentOutput", "true");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.booking.com/");
 
@@ -86,6 +85,6 @@ public class Test3 {
 
         String textColor = element.getAttribute("style");
         Assert.assertEquals("color: red;", textColor);
-        driver.quit();
+        //driver.quit();
     }
 }

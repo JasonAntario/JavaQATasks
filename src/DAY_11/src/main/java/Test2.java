@@ -18,6 +18,7 @@ public class Test2 {
         int daysCount = 5;
         int daysShiftCount = 10;
         System.setProperty("webdriver.chrome.driver", "extra/chromedriver.exe");
+        System.setProperty("webdriver.chrome.silentOutput", "true");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.booking.com/");
         WebElement element = driver.findElement(By.xpath("//*[@id=\"ss\"]"));
@@ -74,6 +75,7 @@ public class Test2 {
         driver.quit();
         firstPrice = firstPrice.replaceAll("\\D+", "");
         int firstOneDayPrice = Integer.parseInt(firstPrice) / daysCount;
+        System.out.println(firstOneDayPrice +" "+maxPrice);
         Assert.assertTrue(firstOneDayPrice <= Integer.parseInt(maxPrice));
 
     }
