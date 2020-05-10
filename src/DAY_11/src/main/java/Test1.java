@@ -11,18 +11,19 @@ import java.util.concurrent.TimeUnit;
 
 public class Test1 {
     public static void main(String[] args) throws InterruptedException {
-        String date = null;
         int daysCount = 7;
         int daysShiftCount = 3;
+
         System.setProperty("webdriver.chrome.driver", "extra/chromedriver.exe");
         System.setProperty("webdriver.chrome.silentOutput", "true");
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver(); //заменить через отдельый класс
         driver.get("https://www.booking.com/");
         WebElement element = driver.findElement(By.xpath("//*[@id=\"ss\"]"));
         element.sendKeys("Paris");
         element = driver.findElement(By.xpath("//*[contains(@class, \"xp__input-group xp__date-time\")]"));
         element.click();
-
+        //добавить базовые шаги для precondition/postcondition
+        //настройки в отдельный файл (через файл .property)
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, daysShiftCount);
         Date threeDays = calendar.getTime();
@@ -49,7 +50,6 @@ public class Test1 {
 
         element = driver.findElement(By.xpath("//*[contains(@class,\"field-rooms\")]//input"));
         String roomCount = element.getAttribute("value");
-        System.out.println(roomCount);
         element = driver.findElement(By.xpath("//*[contains(@aria-describedby, \"no_rooms_desc\")][contains(@class, \"add\")]"));
         for (int i = 0; i < (2 - Integer.parseInt(roomCount)); i++) {
             element.click();
@@ -71,7 +71,7 @@ public class Test1 {
         driver.close();
         firstPrice = firstPrice.replaceAll("\\D+", "");
         int firstOneDayPrice = Integer.parseInt(firstPrice) / daysCount;
-        System.out.println(firstOneDayPrice +" "+maxPrice);
+        System.out.println(firstOneDayPrice + " " + maxPrice);
         Assert.assertTrue(firstOneDayPrice >= Integer.parseInt(maxPrice));
     }
 }
